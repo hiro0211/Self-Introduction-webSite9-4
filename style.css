@@ -2,7 +2,7 @@
     --primary-color: #3498db;
     --secondary-color: #2c3e50;
     --accent-color: #e74c3c;
-    --bg-color: #f5f5f5;  
+    --bg-color: #f5f5f5;
     --text-color: #34495e;
 }
 
@@ -601,11 +601,6 @@ footer {
     padding: 20px;
 }
 
-.section-title {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #333;
-}
 
 .knowledge-grid {
     display: grid;
@@ -1088,7 +1083,7 @@ main {
 }
 
 .section {
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
 .section h2 {
@@ -1356,4 +1351,71 @@ footer {
         height: 40px;
         font-size: 18px;
     }
+}
+
+/* Vision.html内のVISIONを上げた理由のスタイル */
+.vision-detail {
+    background-color: var(--bg-color);
+    padding: 50px 0;
+}
+
+.vision-detail-grid {
+    display: flex;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+    .vision-detail-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.vision-detail-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vision-label {
+    display: inline-block;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.vision-label h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.vision-title {
+    font-size: 2.5em;
+    margin: 10px 0;
+    color: var(--secondary-color);
+}
+
+.vision-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: var(--text-color);
+}
+
+.vision-list li {
+    margin-bottom: 10px;
+}
+
+.vision-image {
+    margin-top: 30px;
+}
+
+.vision-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
