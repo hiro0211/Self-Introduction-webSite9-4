@@ -1354,6 +1354,7 @@ footer {
 }
 
 /* Vision.html内のVISIONを上げた理由のスタイル */
+
 .vision-detail {
     background-color: var(--bg-color);
     padding: 50px 0;
@@ -1361,7 +1362,7 @@ footer {
 
 .vision-detail-grid {
     display: flex;
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 30px;
     margin-bottom: 30px;
 }
@@ -1377,6 +1378,17 @@ footer {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vision-detail-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333333;
+    padding: 20px, 20px;
+}
+
+.vision-detail-item p {
+    padding-bottom: 20px;
 }
 
 .vision-label {
@@ -1419,3 +1431,54 @@ footer {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
+/* -------------------行動指針、コアバリューのデザイン --------------*/
+.core-values-section {
+    background-color: var(--bg-color);
+    padding: 80px 0;
+}
+.core-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+.core-value-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+}
+.core-value-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.core-value-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+.core-value-content p {
+    color: var(--text-color);
+}
+.core-value-icon {
+    font-size: 1.5em;
+    color: white;
+    background-color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+.core-value-content {
+    flex-grow: 1;
+}
+
+/* ------------------------------------------------------------ */
