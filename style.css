@@ -1383,12 +1383,35 @@ footer {
 .vision-detail-item h3 {
     font-size: 1.5em;
     margin-bottom: 15px;
-    color: #333333;
+    color: var(--primary-color);
     padding: 20px, 20px;
 }
 
 .vision-detail-item p {
     padding-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+}
+
+.vision-separator {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 30px 0;
 }
 
 .vision-label {
@@ -1437,12 +1460,14 @@ footer {
     background-color: var(--bg-color);
     padding: 80px 0;
 }
+
 .core-values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 50px;
 }
+
 .core-value-item {
     background-color: white;
     padding: 30px;
@@ -1452,18 +1477,22 @@ footer {
     display: flex;
     align-items: flex-start;
 }
+
 .core-value-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
+
 .core-value-content h3 {
     color: var(--primary-color);
     margin-bottom: 15px;
     font-size: 1.5em;
 }
+
 .core-value-content p {
     color: var(--text-color);
 }
+
 .core-value-icon {
     font-size: 1.5em;
     color: white;
@@ -1477,6 +1506,7 @@ footer {
     margin-right: 20px;
     flex-shrink: 0;
 }
+
 .core-value-content {
     flex-grow: 1;
 }
