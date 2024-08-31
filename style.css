@@ -417,13 +417,7 @@ footer {
 }
 
 /* OJT計画書のスタイル */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --bg-color: #ecf0f1;
-    --text-color: #34495e;
-}
+
 
 * {
     margin: 0;
@@ -802,13 +796,6 @@ footer {
 }
 
 /* BI-require.htmlのスタイル */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --bg-color: #ecf0f1;
-    --text-color: #34495e;
-}
 
 * {
     margin: 0;
@@ -877,7 +864,9 @@ main {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -1004,14 +993,6 @@ footer {
     position: absolute;
     left: 0;
     color: var(--primary-color);
-}
-
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --bg-color: #ecf0f1;
-    --text-color: #34495e;
 }
 
 * {
