@@ -35,10 +35,12 @@ header {
 }
 
 /* ----------------- ハンバーガーメニューのスタイル -------------- */
+/* ハンバーガーメニューのスタイル */
 .hamburger-menu {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    z-index: 1001; /* ナビゲーションリンクより上に表示 */
 }
 
 .hamburger-menu span {
@@ -49,6 +51,11 @@ header {
     transition: 0.4s;
 }
 
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
 @media (max-width: 768px) {
     .hamburger-menu {
         display: flex;
@@ -57,12 +64,13 @@ header {
     .nav-links {
         display: none;
         flex-direction: column;
-        position: absolute;
+        position: fixed;
         top: 80px;
         left: 0;
         width: 100%;
         background-color: white;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
 
     .nav-links.active {
