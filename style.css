@@ -1188,6 +1188,49 @@ main {
     color: var(--text-color);
 }
 
+.reasons-title {
+    font-size: 1.3em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.reasons-list {
+    padding-left: 20px;
+}
+
+.reasons-list li {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.reason-highlight {
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+.cta-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+}
+
 .qualification-timeline {
     margin-top: 50px;
     position: relative;
