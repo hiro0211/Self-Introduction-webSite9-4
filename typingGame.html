@@ -1,231 +1,157 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Game</title>
+    <title>有村大旭OJT計画 復習タイピングゲーム</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         body {
-            font-family: sans-serif;
-            background-color: #f0e68c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 600px;
-            width: 100%;
-            background-color: #cd853f;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .timer {
-            background-color: #deb887;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .word-display {
-            background-color: #90ee90;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .word-display img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-        }
-
-        .word-info {
-            background-color: #2f4f4f;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .input {
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .footer {
-            background-color: #deb887;
-            padding: 10px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer button {
-            background-color: #8b4513;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .footer button:hover {
-            background-color: #a0522d;
-        }
-
-        .timer-dots {
-            display: flex;
-            gap: 5px;
-        }
-
-        .timer-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-
-        .timer-dot.active {
-            background-color: #8b4513;
-        }
-
-        .timer-dot.inactive {
-            background-color: #d2b48c;
+            font-family: 'Roboto', sans-serif;
         }
     </style>
 </head>
-
-<body>
-    <div class="container">
-        <div class="timer">
-            <span id="time-left" class="time-left">残り60秒</span>
-            <div class="timer-dots">
-                <div class="timer-dot active"></div>
-                <div class="timer-dot active"></div>
-                <div class="timer-dot active"></div>
-                <div class="timer-dot active"></div>
-                <div class="timer-dot active"></div>
-            </div>
-        </div>
-        <div class="word-display">
-            <img src="/tamago.png" alt="A plate of tamago sushi">
-            <div class="word-info">
-                <span id="current-word" class="current-word">青</span><br>
-                <span id="current-romaji" class="current-romaji">ao</span>
-            </div>
-            <img src="/green-tea.png" alt="A cup of green tea">
-        </div>
-        <input type="text" id="typing-input" class="input" placeholder="タイプしてください..." disabled>
-        <div class="footer">
-            <span id="score" class="score">スコア: 0</span>
-            <button id="start-button">スタート</button>
+<body class="bg-blue-100 min-h-screen flex flex-col items-center justify-center">
+    <div class="text-center">
+        <h1 class="text-4xl mb-8 text-blue-800 font-bold">有村大旭OJT計画 <br>復習タイピングゲーム</h1>
+        
+        <div id="game-container" class="bg-white p-8 rounded-lg shadow-md w-full max-w-lg">
+            <!-- ゲームコンテンツがここに動的に挿入されます -->
         </div>
     </div>
 
     <script>
-        const timeLeftElement = document.getElementById('time-left');
-        const currentWordElement = document.getElementById('current-word');
-        const currentRomajiElement = document.getElementById('current-romaji');
-        const inputElement = document.getElementById('typing-input');
-        const scoreElement = document.getElementById('score');
-        const startButton = document.getElementById('start-button');
-        const timerDots = document.querySelectorAll('.timer-dot');
-
-        let timeLeft = 60;
-        let currentWord = "青";
-        let currentRomaji = "ao";
-        let score = 0;
+    document.addEventListener("DOMContentLoaded", function () {
+        let keyword = "";
+        let romanized = "";
+        let input = "";
         let gameStarted = false;
+        let mistake = false;
+        let score = 0;
+        let timeLeft = 60;
         let timer;
 
-        const wordList = [
-            { kanji: "寿司", romaji: "sushi" },
-            { kanji: "緑茶", romaji: "ryokucha" },
-            { kanji: "刺身", romaji: "sashimi" },
-            { kanji: "天ぷら", romaji: "tempura" },
-            { kanji: "醤油", romaji: "shoyu" },
+        const keywords = [
+            { kanji: "有村", romaji: "arimura" },
+            { kanji: "大旭", romaji: "hiroaki" },
+            { kanji: "長期的な視点", romaji: "choukitekinasitenn" },
+            { kanji: "スピード命", romaji: "supi-doinoti" },
+            { kanji: "AI", romaji: "ai" },
+            { kanji: "からあげ", romaji: "karaage" },
+            { kanji: "キングダム", romaji: "kingudamu" },
+            { kanji: "BIグループ", romaji: "biguru-pu" },
+            { kanji: "行動指針", romaji: "koudousisinn" },
+            { kanji: "BIグループ", romaji: "biguru-pu" },
+            { kanji: "ロバート", romaji: "roba-to" },
+            { kanji: "ダイアン", romaji: "daiann" },
+            { kanji: "ヴィジョン", romaji: "bijyonn" },
+            { kanji: "チーム", romaji: "ti-mu" },
+            { kanji: "ニルヴァーナ", romaji: "niruva-na" },
+            { kanji: "プログラミング", romaji: "puroguramingu" },
+            { kanji: "お笑い芸人", romaji: "owaraigeininn" },
+            { kanji: "市場価値の向上", romaji: "sijyoukatinokoujyou" },
+            { kanji: "AIで想いをカタチに", romaji: "aideomoiwokatatini" },
+            { kanji: "成果を出す", romaji: "seikawodasu" },
+            { kanji: "理想像", romaji: "risouzou" },
         ];
 
-        function updateTimer() {
-            timeLeftElement.textContent = `残り${timeLeft}秒`;
-            timerDots.forEach((dot, index) => {
-                if (index < timeLeft / 12) {
-                    dot.classList.add('active');
-                    dot.classList.remove('inactive');
-                } else {
-                    dot.classList.add('inactive');
-                    dot.classList.remove('active');
-                }
-            });
-        }
+        const gameContainer = document.getElementById("game-container");
 
         function startGame() {
-            gameStarted = true;
-            timeLeft = 60;
             score = 0;
-            inputElement.value = '';
-            inputElement.disabled = false;
-            inputElement.focus();
-            startButton.textContent = 'リセット';
-            updateTimer();
-            getNextWord();
-
+            timeLeft = 60;
+            gameStarted = true;
+            nextKeyword();
+            updateUI();
             timer = setInterval(() => {
                 timeLeft--;
-                updateTimer();
                 if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    gameStarted = false;
-                    inputElement.disabled = true;
-                    startButton.textContent = 'スタート';
+                    endGame();
                 }
+                updateUI();
             }, 1000);
         }
 
-        function getNextWord() {
-            const randomIndex = Math.floor(Math.random() * wordList.length);
-            currentWord = wordList[randomIndex].kanji;
-            currentRomaji = wordList[randomIndex].romaji;
-            currentWordElement.textContent = currentWord;
-            currentRomajiElement.textContent = currentRomaji;
+        function nextKeyword() {
+            const randomKeyword = keywords[Math.floor(Math.random() * keywords.length)];
+            keyword = randomKeyword.kanji;
+            romanized = randomKeyword.romaji;
+            input = "";
         }
 
-        inputElement.addEventListener('input', function () {
-            if (inputElement.value.toLowerCase() === currentRomaji) {
-                score += 100;
-                scoreElement.textContent = `スコア: ${score}`;
-                getNextWord();
-                inputElement.value = '';
+        function resetGame() {
+            clearInterval(timer);
+            keyword = "";
+            romanized = "";
+            input = "";
+            gameStarted = false;
+            score = 0;
+            timeLeft = 60;
+            updateUI();
+        }
+
+        function endGame() {
+            clearInterval(timer);
+            gameStarted = false;
+            updateUI();
+        }
+
+        function handleTyping(key) {
+            if (key === romanized[input.length]) {
+                input += key;
+                if (input.length === romanized.length) {
+                    score += 10;
+                    nextKeyword();
+                }
+                updateUI();
+            } else {
+                mistake = true;
+                updateUI();
+                setTimeout(() => {
+                    mistake = false;
+                    updateUI();
+                }, 100);
+            }
+        }
+
+        function updateUI() {
+            if (!gameStarted) {
+                gameContainer.innerHTML = `
+                    <p id="start-message" class="mb-4 text-blue-600">スペースキーでスタート</p>
+                    <p id="reset-message" class="text-blue-600">エスケープキーでリセット</p>
+                    ${score > 0 ? `<p class="text-2xl mb-4 text-blue-700">最終スコア: ${score}</p>` : ''}
+                `;
+            } else {
+                gameContainer.innerHTML = `
+                    <div class="flex justify-between mb-4">
+                        <p class="text-2xl text-blue-700">スコア: ${score}</p>
+                        <p class="text-2xl text-blue-700">残り時間: ${timeLeft}秒</p>
+                    </div>
+                    <p class="text-3xl mb-2 text-blue-700 break-all">${keyword}</p>
+                    <p class="text-xl mb-4 text-blue-500 break-all">${romanized}</p>
+                    <div class="text-2xl ${mistake ? "bg-red-500" : "bg-blue-200"} p-4 rounded transition-colors duration-100 break-all">
+                        <span class="text-black">${input}</span><span class="text-blue-400">${romanized.slice(input.length)}</span>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === " " && !gameStarted) {
+                e.preventDefault();
+                startGame();
+            } else if (e.key === "Escape") {
+                resetGame();
+            } else if (gameStarted && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                e.preventDefault();
+                handleTyping(e.key);
             }
         });
 
-        startButton.addEventListener('click', function () {
-            if (gameStarted) {
-                clearInterval(timer);
-                gameStarted = false;
-                inputElement.disabled = true;
-                startButton.textContent = 'スタート';
-            } else {
-                startGame();
-            }
-        });
+        // 初期UIの更新
+        updateUI();
+    });
     </script>
 </body>
-
 </html>
